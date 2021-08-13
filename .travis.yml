@@ -6,8 +6,8 @@ before_install:
   - docker build -t kajetand/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run kajetand/react-test npm test -- --coverage
-
+  - docker run -e CI=true USERNAME/react-test npm test
+  
 after_success:
   - docker build -t kajetand/multi-client ./client
   - docker build -t kajetand/multi-nginx ./nginx
